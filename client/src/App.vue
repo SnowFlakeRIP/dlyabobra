@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-container>
+      <NavBar
+
+      />
+
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from "./components/NavBar";
+// function time(){
+//   let strTimer
+//   let timeMinute = 300
+//   let timer = setInterval(function (){
+//     let seconds = timeMinute % 60
+//     let minutes = timeMinute / 60 % 60
+//     let hours = timeMinute / 60 / 60 % 60
+//     if(timeMinute<=0){
+//       clearInterval(timer)
+//     }else{
+//       strTimer = `${Math.trunc(hours)}:${Math.trunc(minutes)}:${Math.trunc(seconds)} gggg`
+//     }
+//     --timeMinute
+//     console.log(strTimer)
+//   },1000)
+// }
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    NavBar
+  },
+
+  data: () => ({
+
+  }),
+};
+</script>

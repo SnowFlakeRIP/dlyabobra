@@ -3,12 +3,20 @@ const fastify = require('fastify')({
 })
 const TelegramBot = require('node-telegram-bot-api');
 const chatId = 539715503;
-// replace the value below with the Telegram token you receive from @BotFather
-const token = '2029239676:AAEY6MONrGIh6Qg-zx1e8nzP3KuykQCQWno';
-
-// Create a bot that uses 'polling' to fetch new updates
+const token = '2039075225:AAG0gnFmaTBjJKZRM0x-Aduta46QEr1lxyg';
 const bot = new TelegramBot(token, {polling: true});
 const Pool = require('pg-pool');
+const nodemailer = require('nodemailer')
+const fs = require('fs')
+const config = {
+    user: 'postgres',
+    password: '12345678',
+    host: '192.168.0.2',
+    port: 5432,
+    database: 'bober',
+};
+let file = fs.readFileSync('./index.html', {ecoding: 'utf-8'})
+
 bot.onText(/\/sum/, (msg, match) => {
     pool.connect((err, client, release) => {
         if (err) {
@@ -39,13 +47,7 @@ bot.onText(/\/love/, function onLoveText(msg) {
     };
     bot.sendMessage(msg.chat.id, 'Добавляем', opts);
 });
-const config = {
-    user: 'postgres',
-    password: 'q20047878',
-    host: 'localhost',
-    port: 5432,
-    database: 'bober',
-};
+
 fastify.register(require('fastify-cors'), {})
 const pool = new Pool(config)
 fastify.route({
@@ -58,6 +60,9 @@ fastify.route({
                 name: {
                     type: 'string',
                 },
+                email: {
+                    type: 'string'
+                },
                 number: {
                     type: 'integer'
                 }
@@ -69,17 +74,40 @@ fastify.route({
         let user = null;
         let client = await pool.connect()
         try {
-            user = await client.query(`insert into "users" (name, number)
-                                       values ($1, $2) RETURNING id`,
+            user = await client.query(`insert into "users" (name, email, number)
+                                       values ($1, $2, $3) RETURNING id`,
                 [
                     request.body.name,
+                    request.body.email,
                     request.body.number,
                 ]
             );
             bot.sendMessage(chatId, ` 
             Регистрация пользователя:
             Имя: ${request.body.name},
+            Почта: ${request.body.email},
             Телефон: ${request.body.number}`)
+
+            // let testEmailAccount = await nodemailer.createTestAccount()
+            // let transporter = nodemailer.createTransport({
+            //     host: 'smtp.gmail.com',
+            //     port: 465,
+            //     secure: true,
+            //     auth: {
+            //         user: 'schmakov8@gmail.com',
+            //         pass: 'q20047878'
+            //     }
+            // })
+            // await transporter.sendMail({
+            //     from: '"Node js" <schmakov8@gmail.com>',
+            //     to: `${request.body.email}`,
+            //     subject: 'test',
+            //     text: 'This message with attachments.',
+            //     html: file,
+            //
+            // })
+
+
             reply.send({
                 succes: true
             })
@@ -90,8 +118,6 @@ fastify.route({
         }
     },
 });
-//TODO вывести сумму людей, которые уже записались на мероприятие
-
 fastify.get('/people', async function (request, reply) {
     let users = null;
     let sum = 0
@@ -108,7 +134,71 @@ fastify.get('/people', async function (request, reply) {
         client.release()
     }
 })
+fastify.route({
+    method: 'POST',
+    url: '/mail',
+    schema: {
+        body: {
+            type: 'object',
+            properties: {
+                name: {
+                    type: 'string',
+                },
+                email: {
+                    type: 'string'
+                },
+            },
+            required: ['name', 'email']
+        }
+    },
+    async handler(request, response) {
+       try{
+           let testEmailAccount = await nodemailer.createTestAccount()
+           let transporter = nodemailer.createTransport({
+               host: 'smtp.gmail.com',
+               port: 465,
+               secure: true,
+               auth: {
+                   user: 'schmakov8@gmail.com',
+                   pass: 'q20047878'
+               }
+           })
+           await transporter.sendMail({
+               from: '"Node js" <schmakov8@gmail.com>',
+               to: `${request.body.email}`,
+               subject: 'test',
+               text: 'This message with attachments.',
+               html: file,
 
+           })
+       }catch (e) {
+           console.log(e)
+       }
+       response.send('Успешно')
+    }
+})
+// fastify.get('/mail', async function (request, response) {
+//     let testEmailAccount = await nodemailer.createTestAccount()
+//     let transporter = nodemailer.createTransport({
+//         host: 'smtp.gmail.com',
+//         port: 465,
+//         secure: true,
+//         auth: {
+//             user: 'schmakov8@gmail.com',
+//             pass: 'q20047878'
+//         }
+//     })
+//     await transporter.sendMail({
+//         from: '"Node js" <schmakov8@gmail.com>',
+//         to: '8schmakov8@gmail.com',
+//         subject: 'test',
+//         text: 'This message with attachments.',
+//         html:
+//         file,
+//
+//     })
+//     response.send('Успешно отправлено')
+// })
 
 fastify.listen(3000, function (err, address) {
     if (err) {

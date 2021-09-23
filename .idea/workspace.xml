@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75f3a058-9a4c-4bf1-bc83-4e7ca53c980b" name="Changes" comment="Start FrontEnd dev">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/21_1920_1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Community.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Form.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Form2.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Instruction.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Slider.vue" afterDir="false" />
+    <list default="true" id="75f3a058-9a4c-4bf1-bc83-4e7ca53c980b" name="Changes" comment="Minor update">
+      <change afterPath="$PROJECT_DIR$/server/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Content.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Content.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +24,7 @@
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="Vue Single File Component" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,6 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -59,6 +56,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -68,7 +66,7 @@
       <recent name="D:\dlyabobra\client\src\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:8080">
       <method v="2" />
     </configuration>
@@ -104,8 +102,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -125,7 +123,7 @@
       <workItem from="1632057379876" duration="1185000" />
       <workItem from="1632058640304" duration="937000" />
       <workItem from="1632220652982" duration="5186000" />
-      <workItem from="1632372181493" duration="15450000" />
+      <workItem from="1632372181493" duration="18512000" />
     </task>
     <task id="LOCAL-00001" summary="Start BACKEND dev">
       <created>1631885399677</created>
@@ -141,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631980745469</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Minor update">
+      <created>1632389355358</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1632389355358</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +167,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start BACKEND dev" />
     <MESSAGE value="Start FrontEnd dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start FrontEnd dev" />
+    <MESSAGE value="Minor update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor update" />
   </component>
 </project>

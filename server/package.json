@@ -5,7 +5,9 @@
   "dependencies": {
     "fastify": "^3.21.2",
     "fastify-cors": "^6.0.2",
+    "fs": "^0.0.1-security",
     "node-telegram-bot-api": "^0.54.0",
+    "nodemailer": "^6.6.4",
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
     "pg-pool": "^3.4.1"

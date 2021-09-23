@@ -64,7 +64,7 @@ fastify.route({
                     type: 'string'
                 },
                 number: {
-                    type: 'integer'
+                    type: 'string'
                 }
             },
             required: ['name', 'number']
@@ -88,26 +88,23 @@ fastify.route({
             Почта: ${request.body.email},
             Телефон: ${request.body.number}`)
 
-            // let testEmailAccount = await nodemailer.createTestAccount()
-            // let transporter = nodemailer.createTransport({
-            //     host: 'smtp.gmail.com',
-            //     port: 465,
-            //     secure: true,
-            //     auth: {
-            //         user: 'schmakov8@gmail.com',
-            //         pass: 'q20047878'
-            //     }
-            // })
-            // await transporter.sendMail({
-            //     from: '"Node js" <schmakov8@gmail.com>',
-            //     to: `${request.body.email}`,
-            //     subject: 'test',
-            //     text: 'This message with attachments.',
-            //     html: file,
-            //
-            // })
-
-
+            let testEmailAccount = await nodemailer.createTestAccount()
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'schmakov8@gmail.com',
+                    pass: 'q20047878'
+                }
+            })
+            await transporter.sendMail({
+                from: '"Bober Entertainment" <schmakov8@gmail.com>',
+                to: `${request.body.email}`,
+                subject: 'Акция "Посади дерево -спаси бобра"',
+                text: 'This message with attachments.',
+                html: file,
+            })
             reply.send({
                 succes: true
             })
@@ -164,9 +161,9 @@ fastify.route({
                }
            })
            await transporter.sendMail({
-               from: '"Node js" <schmakov8@gmail.com>',
+               from: '"Bober Entertainment" <schmakov8@gmail.com>',
                to: `${request.body.email}`,
-               subject: 'test',
+               subject: 'Акция "Посади дерево -спаси бобра"',
                text: 'This message with attachments.',
                html: file,
 

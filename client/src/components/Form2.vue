@@ -6,12 +6,15 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            color="red lighten-2"
-            dark
+            class="button"
+            elevation="8"
+            plain
+            x-large
+            color=#00BCD4
             v-bind="attrs"
             v-on="on"
         >
-          Click Me
+          Регистрация
         </v-btn>
       </template>
 
@@ -37,7 +40,7 @@
               text
               @click="accept"
           >
-            I accept
+            Подтверждаю
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -60,7 +63,7 @@ export default {
     accept() {
       this.dialog = false
       console.log('Accept')
-      console.log(this.email)
+      this.$emit('accept',this.name,this.email,this.number)
     }
   }
 }

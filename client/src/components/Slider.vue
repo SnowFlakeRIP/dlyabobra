@@ -15,15 +15,7 @@
             <br>
             Жми на кнопку и становись счастливым обладателем!
           </p>
-          <v-btn
-              class="button"
-              elevation="8"
-              plain
-              x-large
-              color=#d2089a
-          >
-            Нажми на меня!
-          </v-btn>
+          <Form2 @accept="accept"/>
         </div>
         </v-col>
         <v-col cols="6">
@@ -41,6 +33,7 @@
 </template>
 
 <script>
+import Form2 from "./Form2";
 export default {
   data() {
     return {
@@ -60,7 +53,17 @@ export default {
       ]
     }
   },
-  name: "Slider"
+  name: "Slider",
+  components:{
+    Form2
+  },
+  methods: {
+    accept(name,email,number) {
+      this.dialog = false
+      console.log('Accept')
+      this.$emit('accept',name,email,number)
+    }
+  }
 }
 </script>
 

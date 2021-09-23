@@ -21,15 +21,7 @@
                 Жми на кнопку ниже!
                 &#129047;&#129047;&#129047;
               </h1>
-              <v-btn
-                  class="button"
-                  elevation="8"
-                  plain
-                  x-large
-                  color=#00BCD4
-              >
-                Нажми на меня!
-              </v-btn>
+              <Form2 @accept="accept"/>
             </div>
           </v-col>
         </v-row>
@@ -39,12 +31,23 @@
 </template>
 
 <script>
-
+import Form2 from "./Form2";
 window.onload = ()=>{
   document.querySelector('.content').style.minHeight = document.documentElement.clientHeight+'px'
 }
 export default {
-  name: "Content"
+  name: "Content",
+  components:{
+    Form2
+  },
+  methods: {
+    accept(name,email,number) {
+      this.dialog = false
+      console.log('Accept')
+      this.$emit('accept',name,email,number)
+    }
+  }
+
 }
 </script>
 

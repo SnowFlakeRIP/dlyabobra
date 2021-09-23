@@ -1,23 +1,7 @@
 <template>
   <div>
-    <v-container>
-      <v-row style="background: #80CBC4">
-        <v-col class="nav">
-          <v-row>
-            <v-col class="nav-text">
-              <h4>
-                Благотворительная акция
-              </h4>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col class="nav-text">
-              <h4>
-                Посади дерево - не оставь бобра без дома
-              </h4>
-            </v-col>
-          </v-row>
-        </v-col>
+    <v-container fluid class="content">
+      <v-row>
         <v-col class="nav">
           <v-row>
             <v-col class="nav-text">
@@ -30,59 +14,62 @@
           <v-row>
             <v-col>
               <v-progress-linear
-                  color="light-blue"
+                  color=#50f2c4
                   height="10"
                   value="59"
                   striped
-              ></v-progress-linear>
+              >
+              </v-progress-linear>
             </v-col>
           </v-row>
         </v-col>
         <v-col class="nav">
           <v-row>
-            <v-col>
-             <h3 id="time">
-
-             </h3>
+            <v-col class="nav-text">
+              <h4>
+                Времени до конца регистрации:
+              </h4>
+              <h3 style="text-decoration: none" v-bind:time="strTimer" id="time">
+                {{ strTimer }}
+              </h3>
             </v-col>
           </v-row>
-          <v-row>
-
-          </v-row>
         </v-col>
-
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-
-
-function time(){
-  let strTimer
-  let timeMinute = 300
-  let timer = setInterval(function (){
-    let seconds = timeMinute % 60
-    let minutes = timeMinute / 60 % 60
-    let hours = timeMinute / 60 / 60 % 60
-    if(timeMinute<=0){
-      clearInterval(timer)
-    }else{
-      strTimer = `${Math.trunc(hours)}:${Math.trunc(minutes)}:${Math.trunc(seconds)}`
-      document.querySelector('#time').innerHTML = strTimer
-    }
-    --timeMinute
-    console.log(strTimer)
-  },1000)
-}
-window.onload = time()
 export default {
-  props:
-   ['timer'],
+  props: [],
   name: "NavBar",
-  methods:{
+  data() {
+    return {
+      strTimer: 0
+    }
+  },
+  methods: {
 
+    time() {
+      let timeMinute = 300
+      let timer = setInterval(function () {
+        let seconds = timeMinute % 60
+        let minutes = timeMinute / 60 % 60
+        let hours = timeMinute / 60 / 60 % 60
+        if (timeMinute <= 0) {
+          clearInterval(timer)
+        } else {
+          this.strTimer = `${Math.trunc(hours)}:${Math.trunc(minutes)}:${Math.trunc(seconds)}`
+          document.querySelector('#time').innerHTML = this.strTimer
+        }
+        --timeMinute
+
+      }, 1000)
+    }
+  },
+  beforeMount() {
+    this.time()
   }
 }
 
@@ -90,8 +77,12 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap');
+
 .nav {
   text-align: center;
+}
+.content{
+  background: -webkit-linear-gradient(to right, #60c1c2,#fabbd7);                                            background: linear-gradient(to right, #60c1c2,#fabbd7);
 }
 .nav-text {
   font-family: 'Grechen Fuemen', cursive;

@@ -21,19 +21,17 @@
 
             required
         ></v-text-field>
+        <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="Email"
 
-        <v-select
-            v-model="select"
-            :items="items"
-            :rules="[v => !!v || 'Item is required']"
-            label="Item"
             required
-        ></v-select>
-
+        ></v-text-field>
         <v-checkbox
             v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
-            label="Do you agree?"
+            :rules="[v => !!v || 'Вы должны дать согласие']"
+            label="Согласие на обработку персональных данных"
             required
         ></v-checkbox>
 
@@ -41,24 +39,15 @@
             :disabled="!valid"
             color="success"
             class="mr-4"
-            @click="validate"
-        >
-          Validate
-        </v-btn>
+            @click="sendMessage"
 
-        <v-btn
-            color="error"
-            class="mr-4"
-            @click="reset"
-        >
-          Reset Form
+        >Подтвердить
         </v-btn>
-
         <v-btn
             color="warning"
             @click="resetValidation"
         >
-          Reset Validation
+          Сбросить валидацию
         </v-btn>
       </v-form>
     </template>
@@ -67,29 +56,29 @@
 
 <script>
 const nameControl = /^[a-zA-Zа-яА-Я ]{2,30}$/
-//const countControl = /^\s*[+-]?(\d+|\.\d+|\d+\.\d+|\d+\.)(e[+-]?\d+)?\s*$/
-
+const countControl = /^\s*[+-]?(\d+|\.\d+|\d+\.\d+|\d+\.)(e[+-]?\d+)?\s*$/
+const emailControl = /.+@.+/
 export default {
   name: "Form",
   data: () => ({
+    snackbar:false,
+    dialog: false,
     valid: true,
     name: '',
     nameRules: [
       v => !!v || 'Поле "Имя" является обязательным',
       v => (v && v.length <= 20) || 'Имя должно быть короче 20 символов"',
-      // || 'Имя не должно состоять из цифр'
+      v => nameControl.test(v) === true || 'Имя не должно содержать цифры'
     ],
     number: '',
     numberRules: [
-      v => !!v || 'E-mail is required',
-      v => typeof (v) === 'string' || 'E-mail must be valid',
+      v => !!v || 'Поле "Телефон" является обязательным',
+      v => countControl.test(v) === true || 'Телефон не должен содержать буквы'
     ],
-    select: null,
-    items: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
+    email: '',
+    emailRules: [
+      v => !!v || 'Поле "email" является обязательным',
+      v => emailControl.test(v) === true || 'Неверный формат email'
     ],
     checkbox: false,
   }),
@@ -97,23 +86,23 @@ export default {
   methods: {
     validate() {
       this.$refs.form.validate()
-      let isValidName = nameControl.test(this.name)
-      if(!isValidName){
-        console.log('Errror')
-      }
-      console.log(this.name)
-      console.log(this.email)
-      console.log(this.select)
     },
-    reset() {
-      this.$refs.form.reset()
+    // eslint-disable-next-line no-unused-vars
+    async sendMessage() {
+      await this.validate()
+      if (this.valid === true) {
+        this.$emit('accept2', this.name, this.email, this.number)
+        this.snackbar=true
+
+        this.$emit('snack')
+      }
     },
     resetValidation() {
       this.$refs.form.resetValidation()
-    },
+    }
+    ,
 
-  },
-
+  }
 }
 </script>
 

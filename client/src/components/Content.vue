@@ -21,7 +21,7 @@
                 Жми на кнопку ниже!
                 &#129047;&#129047;&#129047;
               </h1>
-              <Form2 @accept="accept"/>
+              <Form2 style="margin-top: 20px" v-bind:dialog2="dialog2" @accept="accept"/>
             </div>
           </v-col>
         </v-row>
@@ -42,11 +42,13 @@ export default {
   },
   methods: {
     accept(name,email,number) {
-      this.dialog = false
+      this.dialog = this.dialog2
       console.log('Accept')
+      console.log(this.dialog)
       this.$emit('accept',name,email,number)
     }
-  }
+  },
+  props:['dialog2']
 
 }
 </script>

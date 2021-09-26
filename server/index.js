@@ -11,7 +11,7 @@ const fs = require('fs')
 const config = {
     user: 'postgres',
     password: '12345678',
-    host: '192.168.0.2',
+    host: 'localhost',
     port: 5432,
     database: 'bober',
 };
@@ -31,21 +31,15 @@ bot.onText(/\/sum/, (msg, match) => {
             msg = `Уже зарегистрировалось: ${sum}`
             const resp = msg
             bot.sendMessage(chatId, resp)
-
-
         })
     })
 });
 bot.onText(/\/love/, function onLoveText(msg) {
-    const opts = {
-        reply_to_message_id: msg.message_id,
-        reply_markup: JSON.stringify({
-            keyboard: [
-                ['/sum']
-            ]
-        })
-    };
-    bot.sendMessage(msg.chat.id, 'Добавляем', opts);
+    const commands = [
+        {command: '/sum', description: 'Вывести общее количество участников',opts}
+    ]
+    bot.sendMessage(msg.chat.id, 'Добавляем');
+    bot.setMyCommands(commands)
 });
 
 fastify.register(require('fastify-cors'), {})

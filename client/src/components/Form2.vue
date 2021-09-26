@@ -24,24 +24,18 @@
         </v-card-title>
         <v-card-text>
           <div>
-            <input v-model="name" class="input-text" type="text" placeholder="Имя">
-            <br>
-            <input v-model="email" class="input-text" type="text" placeholder="E-mail">
-            <br>
-            <input v-model="number" class="input-text" type="text" placeholder="Телефон">
+<!--            <input v-model="name" class="input-text" type="text" placeholder="Имя">-->
+<!--            <br>-->
+<!--            <input v-model="email" class="input-text" type="text" placeholder="E-mail">-->
+<!--            <br>-->
+<!--            <input v-model="number" class="input-text" type="text" placeholder="Телефон">-->
+            <Form  v-bind:dialog="dialog" @accept2="accept" @snack="sendsnack"/>
           </div>
 
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-              color="primary"
-              text
-              @click="accept"
-          >
-            Подтверждаю
-          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -49,23 +43,33 @@
 </template>
 
 <script>
+import Form from "./Form";
+
 export default {
   name: "Form2",
   data() {
     return {
-      dialog: false,
+      dialog: null,
       name: '',
       email: '',
       number: ''
     }
   },
+  components:{
+    Form
+  },
   methods: {
-    accept() {
-      this.dialog = false
+    accept(name,email,number) {
+      this.dialog = this.dialog2
       console.log('Accept')
-      this.$emit('accept',this.name,this.email,this.number)
+      this.$emit('accept',name,email,number)
+    },
+    sendsnack() {
+      this.$emit('snack')
+      console.log('ad123123')
     }
-  }
+  },
+  props:['dialog2']
 }
 </script>
 

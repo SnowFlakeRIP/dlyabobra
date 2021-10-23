@@ -3,7 +3,7 @@ const fastify = require('fastify')({
 })
 const TelegramBot = require('node-telegram-bot-api');
 const chatId = 539715503;
-const token = '2039075225:AAG0gnFmaTBjJKZRM0x-Aduta46QEr1lxyg';
+const token = '';
 const bot = new TelegramBot(token, {polling: true});
 const Pool = require('pg-pool');
 const nodemailer = require('nodemailer')
